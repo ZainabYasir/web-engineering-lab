@@ -1,4 +1,217 @@
+/* Basic page style */
 body {
-  font-family: "Times New Roman", Times, serif;
-  text-align: center;
+    font-family: Times New Roman, serif;
+    margin: 0;
+    background-color: #f4f6f8;
+    color: #222;
+    line-height: 1.6;
 }
+
+/* Header */
+header {
+    background-color: #0b3d91;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+/* Main heading */
+h1 {
+    margin: 0 0 15px;
+    font-size: 32px;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Sections */
+section {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px #cccccc;
+}
+
+/* Section headings */
+h2 {
+    color: #0b3d91;
+    margin-top: 0;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+caption {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+th,
+td {
+    border: 1px solid #cccccc;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #e8eef8;
+}
+
+/* Informative SVG figure */
+figure {
+    background-color: white;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 6px #cccccc;
+}
+
+figure svg {
+    width: 40px;
+    height: 40px;
+}
+
+figcaption {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Decorative SVG */
+main > svg {
+    display: block;
+    margin: 20px auto;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    padding: 10px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Email hint */
+#email-hint {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555555;
+}
+
+/* Radio button group */
+fieldset {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+}
+
+fieldset label {
+    display: inline;
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+/* Submit button */
+button {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #0b3d91;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #082d6b;
+}
+
+/* Footer */
+footer {
+    background-color: #222222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+address {
+    font-style: normal;
+}
+
+/* Skip link hidden until focused */
+.skip-link {
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    padding: 10px;
+    background-color: white;
+    color: #0b3d91;
+    border: 2px solid #0b3d91;
+    text-decoration: none;
+}
+
+/* Show skip link when focused */
+.skip-link:focus-visible {
+    top: 10px;
+}
+
+/* Keyboard focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid #ff9800;
+    outline-offset: 3px;
+}
+

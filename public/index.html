@@ -1,14 +1,198 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Engineering Lab</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <h1 id="greeting"></h1>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Engineering Lab 02</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Task 1: Skip link -->
+    <a href="#main-content" class="skip-link">
+        Skip to main content
+    </a>
+
+    <!-- Task 1: Header -->
+    <header>
+
+        <!-- Keep the existing h1#greeting -->
+        <h1 id="greeting">Hello, World!</h1>
+
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="#schedule" aria-current="location">
+                        Office Hours
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#feedback">
+                        Send Feedback
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- Task 2: Main -->
+    <main id="main-content">
+
+        <!-- Task 3: Office Hours -->
+        <section id="schedule">
+    <h2>Office Hours</h2>
+
+    <table>
+        <caption>Weekly office hours</caption>
+
+        <thead>
+            <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Time</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th scope="row">Monday</th>
+                <td>
+                    <time datetime="10:00">10:00</time> –
+                    <time datetime="11:00">11:00</time>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">Wednesday</th>
+                <td>
+                    <time datetime="13:00">13:00</time> –
+                    <time datetime="14:00">14:00</time>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">Friday</th>
+                <td>
+                    <time datetime="11:00">11:00</time> –
+                    <time datetime="12:00">12:00</time>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+<!-- Task 4: SVG -->
+ 
+<!-- Informative SVG -->
+    <figure>
+
+        <svg
+            role="img"
+            aria-labelledby="pin-title"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24">
+
+            <title id="pin-title">Location pin</title>
+
+            <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+            </path>
+
+            <circle
+                cx="12"
+                cy="9"
+                r="2.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+            </circle>
+
+        </svg>
+
+        <figcaption>
+            All office hours are held in Room 214.
+        </figcaption>
+
+    </figure>
+
+</section>
+
+
+<!-- Decorative SVG Divider -->
+<svg
+    aria-hidden="true"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24">
+
+    <circle
+        cx="12"
+        cy="12"
+        r="3"
+        fill="#0b3d91">
+    </circle>
+
+</svg>
+
+<!-- Task 5: Feedback Form -->
+<section id="feedback">
+    <h2>Send Feedback</h2>
+
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"
+               aria-describedby="email-hint" required>
+        <p id="email-hint">Enter a valid email address.</p>
+        
+        <!-- Task 6: Topic Radio Buttons -->
+        <fieldset>
+            <legend>Topic</legend>
+
+            <input type="radio" id="website" name="topic" value="website" required>
+            <label for="website">Website</label>
+
+            <input type="radio" id="accessibility" name="topic" value="accessibility">
+            <label for="accessibility">Accessibility</label>
+
+            <input type="radio" id="other" name="topic" value="other">
+            <label for="other">Other</label>
+        </fieldset>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" cols="40" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+
+    <!-- Task 2: Footer -->
+    <footer>
+
+        <address>
+            Contact your instructor for help.
+        </address>
+
+    </footer>
+
+
+    <!-- Keep my Lab 1 JavaScript -->
     <script src="script.js"></script>
-  </body>
+
+</body>
+
 </html>
