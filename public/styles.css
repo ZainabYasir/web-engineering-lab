@@ -1,217 +1,383 @@
-/* Basic page style */
-body {
-    font-family: Times New Roman, serif;
-    margin: 0;
-    background-color: #f4f6f8;
-    color: #222;
-    line-height: 1.6;
+@layer reset, base, components, utilities;
+
+
+/* =================================
+   TASK 1: RESET
+   ================================= */
+
+@layer reset {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body,
+    h1,
+    h2,
+    p,
+    figure {
+        margin: 0;
+    }
 }
 
-/* Header */
-header {
-    background-color: #0b3d91;
-    color: white;
-    padding: 25px;
-    text-align: center;
+
+/* =================================
+   TASK 5 + TASK 9 + TASK 10:
+   COLOR VARIABLES
+   ================================= */
+
+@layer base {
+
+    /* TASK 5: CSS Variables */
+    /* TASK 9: oklch() and color-mix() */
+    /* TASK 10: color-scheme and light-dark() */
+
+    :root {
+        color-scheme: light dark;
+
+        --space: 1rem;
+
+        --color-bg: light-dark(
+            oklch(97% 0.01 250),
+            oklch(18% 0.03 250)
+        );
+
+        --color-text: light-dark(
+            oklch(25% 0.02 250),
+            oklch(94% 0.02 250)
+        );
+
+        --color-accent: light-dark(
+            oklch(45% 0.15 250),
+            oklch(75% 0.12 250)
+        );
+
+        --color-surface: light-dark(
+            oklch(100% 0 0),
+            oklch(25% 0.03 250)
+        );
+
+        --color-border: color-mix(
+            in oklch,
+            var(--color-text) 25%,
+            transparent
+        );
+
+        --color-muted: color-mix(
+            in oklch,
+            var(--color-text) 60%,
+            var(--color-bg)
+        );
+    }
+
+
+    /* TASK 6: Inherited Typography */
+
+    body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        color: var(--color-text);
+        background-color: var(--color-bg);
+        padding: var(--space);
+    }
+
+    input,
+    textarea,
+    button {
+        font: inherit;
+    }
 }
 
-/* Main heading */
-h1 {
-    margin: 0 0 15px;
-    font-size: 32px;
+
+/* =================================
+   TASK 3 + TASK 4 + OTHER COMPONENTS
+   ================================= */
+
+@layer components {
+
+    header {
+        background-color: var(--color-accent);
+        color: var(--color-bg);
+        padding: 25px;
+        text-align: center;
+    }
+
+
+    h1 {
+        margin: 0 0 15px;
+        font-size: 32px;
+    }
+
+
+    /* Navigation */
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav li {
+        display: inline;
+        margin: 0 10px;
+    }
+
+    nav a {
+        color: var(--color-bg);
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+
+    /* TASK 4: Lower Specificity */
+
+    :where(nav ul li) a {
+        color: var(--color-bg);
+    }
+
+    .nav-link {
+        color: var(--color-bg);
+    }
+
+    a[aria-current="location"] {
+        color: var(--color-bg);
+    }
+
+
+    /* TASK 1: Logical Properties */
+
+    main {
+        max-inline-size: 60rem;
+        margin-inline: auto;
+        padding-block: 1rem;
+    }
+
+
+    /* TASK 9: Surface Color */
+
+    section {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px var(--color-border);
+    }
+
+
+    h2 {
+        color: var(--color-accent);
+        margin-top: 0;
+    }
+
+
+    /* TASK 9: Border Color */
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    caption {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    th,
+    td {
+        border: 1px solid var(--color-border);
+        padding: 12px;
+        text-align: left;
+    }
+
+
+    /* TASK 9 + TASK 10: Table Color */
+
+    th {
+        background-color: color-mix(
+            in oklch,
+            var(--color-accent) 18%,
+            var(--color-surface)
+        );
+    }
+
+
+    /* TASK 10: SVG currentColor */
+
+    figure {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 2px 6px var(--color-border);
+    }
+
+    figure svg {
+        width: 40px;
+        height: 40px;
+        fill: currentColor;
+    }
+
+    figcaption {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+
+    /* Decorative SVG */
+
+    main > svg {
+        display: block;
+        margin: 20px auto;
+    }
+
+
+    /* TASK 2: Margin */
+
+    form p {
+        margin-block: 0.5rem 1rem;
+    }
+
+
+    /* Form */
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-top: 12px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+
+    /* TASK 9: Border and Surface */
+
+    input,
+    textarea {
+        padding: 10px;
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+        background-color: var(--color-surface);
+        color: var(--color-text);
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+
+    /* TASK 9: text-muted is applied in HTML */
+
+    #email-hint {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+
+    /* Radio Button Group */
+
+    fieldset {
+        margin-top: 15px;
+        padding: 15px;
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+    }
+
+    fieldset label {
+        display: inline;
+        margin-right: 15px;
+        font-weight: normal;
+    }
+
+
+    /* TASK 10: Button */
+
+    button {
+        margin-top: 20px;
+        padding: 12px;
+        background-color: var(--color-accent);
+        color: var(--color-bg);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+
+    /* TASK 10: Button Hover */
+
+    button:hover {
+        background-color: color-mix(
+            in oklch,
+            var(--color-accent) 70%,
+            var(--color-text)
+        );
+    }
+
+
+    /* Footer */
+
+    footer {
+        background-color: var(--color-text);
+        color: var(--color-bg);
+        text-align: center;
+        padding: 20px;
+    }
+
+    address {
+        font-style: normal;
+    }
+
+
+    /* Skip Link */
+
+    .skip-link {
+        position: absolute;
+        top: -50px;
+        left: 10px;
+        padding: 10px;
+        background-color: var(--color-surface);
+        color: var(--color-accent);
+        border: 2px solid var(--color-accent);
+        text-decoration: none;
+    }
+
+    .skip-link:focus-visible {
+        top: 10px;
+    }
+
+
+    /* Keyboard Focus */
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+        outline: 3px solid #ff9800;
+        outline-offset: 3px;
+    }
 }
 
-/* Navigation */
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
 
-nav li {
-    display: inline;
-    margin: 0 10px;
-}
+/* =================================
+   TASK 9: UTILITIES
+   ================================= */
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
+@layer utilities {
 
-nav a:hover {
-    text-decoration: underline;
+    .text-muted {
+        color: var(--color-muted);
+    }
 }
-
-/* Main content */
-main {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-/* Sections */
-section {
-    background-color: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px #cccccc;
-}
-
-/* Section headings */
-h2 {
-    color: #0b3d91;
-    margin-top: 0;
-}
-
-/* Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-caption {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-th,
-td {
-    border: 1px solid #cccccc;
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #e8eef8;
-}
-
-/* Informative SVG figure */
-figure {
-    background-color: white;
-    padding: 20px;
-    margin: 25px 0;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 6px #cccccc;
-}
-
-figure svg {
-    width: 40px;
-    height: 40px;
-}
-
-figcaption {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* Decorative SVG */
-main > svg {
-    display: block;
-    margin: 20px auto;
-}
-
-/* Form */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-top: 12px;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input,
-textarea {
-    padding: 10px;
-    border: 1px solid #bbbbbb;
-    border-radius: 5px;
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-}
-
-textarea {
-    resize: vertical;
-}
-
-/* Email hint */
-#email-hint {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #555555;
-}
-
-/* Radio button group */
-fieldset {
-    margin-top: 15px;
-    padding: 15px;
-    border: 1px solid #bbbbbb;
-    border-radius: 5px;
-}
-
-fieldset label {
-    display: inline;
-    margin-right: 15px;
-    font-weight: normal;
-}
-
-/* Submit button */
-button {
-    margin-top: 20px;
-    padding: 12px;
-    background-color: #0b3d91;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #082d6b;
-}
-
-/* Footer */
-footer {
-    background-color: #222222;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-address {
-    font-style: normal;
-}
-
-/* Skip link hidden until focused */
-.skip-link {
-    position: absolute;
-    top: -50px;
-    left: 10px;
-    padding: 10px;
-    background-color: white;
-    color: #0b3d91;
-    border: 2px solid #0b3d91;
-    text-decoration: none;
-}
-
-/* Show skip link when focused */
-.skip-link:focus-visible {
-    top: 10px;
-}
-
-/* Keyboard focus for interactive elements */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-    outline: 3px solid #ff9800;
-    outline-offset: 3px;
-}
-
