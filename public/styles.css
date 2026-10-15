@@ -1,9 +1,14 @@
+
+/* Task 6: Responsive layout */
+@media (max-width: 40rem) {
+    #schedule,
+    form {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 @layer reset, base, components, utilities;
-
-
-/* =================================
-   TASK 1: RESET
-   ================================= */
 
 @layer reset {
 
@@ -22,17 +27,7 @@
     }
 }
 
-
-/* =================================
-   TASK 5 + TASK 9 + TASK 10:
-   COLOR VARIABLES
-   ================================= */
-
 @layer base {
-
-    /* TASK 5: CSS Variables */
-    /* TASK 9: oklch() and color-mix() */
-    /* TASK 10: color-scheme and light-dark() */
 
     :root {
         color-scheme: light dark;
@@ -73,8 +68,6 @@
     }
 
 
-    /* TASK 6: Inherited Typography */
-
     body {
         font-family: system-ui, sans-serif;
         line-height: 1.5;
@@ -91,17 +84,16 @@
 }
 
 
-/* =================================
-   TASK 3 + TASK 4 + OTHER COMPONENTS
-   ================================= */
-
 @layer components {
-
+    /* Task 01*/
     header {
-        background-color: var(--color-accent);
-        color: var(--color-bg);
-        padding: 25px;
-        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space);
+        padding-block-end: var(--space);
+        border-block-end: 1px solid var(--color-border);
     }
 
 
@@ -112,20 +104,18 @@
 
 
     /* Navigation */
-
+    
+    /* Task 2: Navigation layout */
     nav ul {
+        display: flex;
+        gap: 1.5rem;
         list-style: none;
-        padding: 0;
         margin: 0;
-    }
-
-    nav li {
-        display: inline;
-        margin: 0 10px;
+        padding: 0;
     }
 
     nav a {
-        color: var(--color-bg);
+        color: var(--color-accent);
         text-decoration: none;
         font-weight: bold;
     }
@@ -135,22 +125,17 @@
     }
 
 
-    /* TASK 4: Lower Specificity */
-
     :where(nav ul li) a {
-        color: var(--color-bg);
+        color: var(--color-accent);
     }
 
     .nav-link {
-        color: var(--color-bg);
+        color: var(--color-accent);
     }
 
     a[aria-current="location"] {
-        color: var(--color-bg);
+        color: var(--color-accent);
     }
-
-
-    /* TASK 1: Logical Properties */
 
     main {
         max-inline-size: 60rem;
@@ -158,8 +143,6 @@
         padding-block: 1rem;
     }
 
-
-    /* TASK 9: Surface Color */
 
     section {
         background-color: var(--color-surface);
@@ -170,6 +153,25 @@
         box-shadow: 0 2px 6px var(--color-border);
     }
 
+    
+    /* Task 4: Office Hours grid */
+    #schedule {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: var(--space);
+        align-items: start;
+    }
+
+    /* Highlight booked rows */
+    tr.selected th,
+    tr.selected td {
+        background: color-mix(
+            in oklch,
+            var(--color-accent) 20%,
+            var(--color-bg)
+        );
+    }
+
 
     h2 {
         color: var(--color-accent);
@@ -177,7 +179,6 @@
     }
 
 
-    /* TASK 9: Border Color */
 
     table {
         width: 100%;
@@ -198,8 +199,6 @@
     }
 
 
-    /* TASK 9 + TASK 10: Table Color */
-
     th {
         background-color: color-mix(
             in oklch,
@@ -209,16 +208,11 @@
     }
 
 
-    /* TASK 10: SVG currentColor */
-
+    /* Task 3: Location icon and caption */
     figure {
-        background-color: var(--color-surface);
-        color: var(--color-text);
-        padding: 20px;
-        margin: 25px 0;
-        border-radius: 8px;
-        text-align: center;
-        box-shadow: 0 2px 6px var(--color-border);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 
     figure svg {
@@ -241,18 +235,8 @@
     }
 
 
-    /* TASK 2: Margin */
-
     form p {
         margin-block: 0.5rem 1rem;
-    }
-
-
-    /* Form */
-
-    form {
-        display: flex;
-        flex-direction: column;
     }
 
     label {
@@ -261,24 +245,23 @@
         font-weight: bold;
     }
 
-
-    /* TASK 9: Border and Surface */
-
-    input,
-    textarea {
-        padding: 10px;
-        border: 1px solid var(--color-border);
-        border-radius: 5px;
-        background-color: var(--color-surface);
-        color: var(--color-text);
+    
+    /* Task 5: Feedback form grid */
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 var(--space);
     }
 
-    textarea {
-        resize: vertical;
+    form button {
+        justify-self: start;
     }
 
+    input:not([type="radio"]),
+    textarea {
+        inline-size: 100%;
+    }
 
-    /* TASK 9: text-muted is applied in HTML */
 
     #email-hint {
         margin: 5px 0;
@@ -302,7 +285,6 @@
     }
 
 
-    /* TASK 10: Button */
 
     button {
         margin-top: 20px;
@@ -314,8 +296,6 @@
         cursor: pointer;
     }
 
-
-    /* TASK 10: Button Hover */
 
     button:hover {
         background-color: color-mix(
@@ -371,13 +351,26 @@
 }
 
 
-/* =================================
-   TASK 9: UTILITIES
-   ================================= */
-
 @layer utilities {
 
     .text-muted {
         color: var(--color-muted);
     }
+
+    
+    /* Task 04 */
+    .span-all {
+        grid-column: 1 / -1;
+    }
+
+}
+
+/* Task 09: Highlight booked rows */
+tr.selected th,
+tr.selected td {
+  background: color-mix(
+    in oklch,
+    var(--color-accent) 20%,
+    var(--color-bg)
+  );
 }

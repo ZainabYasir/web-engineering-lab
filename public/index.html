@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Engineering Lab 03</title>
+    <title>Web Engineering Lab 04</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -49,44 +49,61 @@
 
         <!-- Task 3: Office Hours -->
         <section id="schedule">
-    <h2>Office Hours</h2>
+
+    <h2 class="span-all">Office Hours</h2>
 
     <table>
         <caption>Weekly office hours</caption>
 
-        <thead>
-            <tr>
-                <th scope="col">Day</th>
-                <th scope="col">Time</th>
-            </tr>
-        </thead>
+     <thead>
+                    <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Book</th>
+                    </tr>
+                </thead>
 
-        <tbody>
-            <tr>
-                <th scope="row">Monday</th>
-                <td>
-                    <time datetime="10:00">10:00</time> –
-                    <time datetime="11:00">11:00</time>
-                </td>
-            </tr>
+                <tbody>
+                    <tr>
+                        <th scope="row">Monday</th>
+                        <td>10:00 – 11:00</td>
+                        <td>
+                            <button
+                                type="button"
+                                data-day="Monday"
+                                aria-label="Select Monday">
+                                Select
+                            </button>
+                        </td>
+                    </tr>
 
-            <tr>
-                <th scope="row">Wednesday</th>
-                <td>
-                    <time datetime="13:00">13:00</time> –
-                    <time datetime="14:00">14:00</time>
-                </td>
-            </tr>
+                    <tr>
+                        <th scope="row">Wednesday</th>
+                        <td>13:00 – 14:00</td>
+                        <td>
+                            <button
+                                type="button"
+                                data-day="Wednesday"
+                                aria-label="Select Wednesday">
+                                Select
+                            </button>
+                        </td>
+                    </tr>
 
-            <tr>
-                <th scope="row">Friday</th>
-                <td>
-                    <time datetime="11:00">11:00</time> –
-                    <time datetime="12:00">12:00</time>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <tr>
+                        <th scope="row">Friday</th>
+                        <td>11:00 – 12:00</td>
+                        <td>
+                            <button
+                                type="button"
+                                data-day="Friday"
+                                aria-label="Select Friday">
+                                Select
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 </section>
 
 
@@ -128,6 +145,10 @@
 
     </figure>
 
+    <!-- Task 7 -->
+    <p id="status" role="status" class="span-all text-muted"></p>
+
+
 </section>
 
 
@@ -149,7 +170,7 @@
 
 <!-- Task 5: Feedback Form -->
 <section id="feedback">
-    <h2>Send Feedback</h2>
+    <h2 class="span-all">Send Feedback</h2>
 
     <form>
         <label for="name">Name:</label>
@@ -161,8 +182,7 @@
             Enter a valid email address.
         </p>
 
-        <!-- Task 6: Topic Radio Buttons -->
-        <fieldset>
+        <fieldset class="span-all">
             <legend>Topic</legend>
 
             <input type="radio" id="website" name="topic" value="website" required>
@@ -175,8 +195,15 @@
             <label for="other">Other</label>
         </fieldset>
 
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" cols="40" required></textarea>
+         <p class="span-all">
+            <label for="message">Message:</label>
+            <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+            ></textarea>
+        </p>
 
         <button type="submit">Submit</button>
     </form>
@@ -194,6 +221,9 @@
 
 
     <script src="script.js"></script>
+    <script type="module" src="main.js"></script>
+
+
 
 </body>
 

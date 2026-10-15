@@ -3,7 +3,7 @@ function greet(name) {
 }
 
 if (typeof document !== "undefined") {
-    document.getElementById("greeting").textContent = greet("World");
+    document.getElementById("greeting").textContent = greet("Zainab Yasir");
 }
 
 
