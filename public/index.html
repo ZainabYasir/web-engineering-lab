@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Engineering Lab 04</title>
+    <title>Web Engineering Lab 05</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -20,7 +20,7 @@
     <header>
 
         <!-- Keep the existing h1#greeting -->
-        <h1 id="greeting">Hello, World!</h1>
+        <h1 id="greeting">Hello, Zainab Yasir!</h1>
 
         <!-- Navigation -->
         <nav>
@@ -172,7 +172,7 @@
 <section id="feedback">
     <h2 class="span-all">Send Feedback</h2>
 
-    <form>
+    <form novalidate>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -209,6 +209,8 @@
     </form>
 </section>
 
+<p id="feedback-status" role="status" aria-live="polite"></p>
+
 
     <!-- Task 2: Footer -->
     <footer>
@@ -222,8 +224,7 @@
 
     <script src="script.js"></script>
     <script type="module" src="main.js"></script>
-
-
+    <script type="module" src="feedback.js"></script>
 
 </body>
 

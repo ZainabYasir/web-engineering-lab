@@ -31,6 +31,7 @@
 
     :root {
         color-scheme: light dark;
+        --color-error: light-dark(oklch(45% 0.2 25), oklch(75% 0.15 25));
 
         --space: 1rem;
 
@@ -94,6 +95,16 @@
         gap: var(--space);
         padding-block-end: var(--space);
         border-block-end: 1px solid var(--color-border);
+    }
+
+    
+    .error {
+    display: block;
+    color: var(--color-error);
+    }
+
+    input[aria-invalid="true"] {
+    border-color: var(--color-error);
     }
 
 

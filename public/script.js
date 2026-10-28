@@ -1,9 +1,8 @@
+"use strict";
 function greet(name) {
     return `Hello, ${name}!`;
 }
-
-if (typeof document !== "undefined") {
-    document.getElementById("greeting").textContent = greet("Zainab Yasir");
+const greeting = document.getElementById("greeting");
+if (greeting !== null) {
+    greeting.textContent = greet("Zainab Yasir");
 }
-
-
