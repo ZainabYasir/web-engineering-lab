@@ -1,0 +1,387 @@
+
+/* Task 6: Responsive layout */
+@media (max-width: 40rem) {
+    #schedule,
+    form {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@layer reset, base, components, utilities;
+
+@layer reset {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body,
+    h1,
+    h2,
+    p,
+    figure {
+        margin: 0;
+    }
+}
+
+@layer base {
+
+    :root {
+        color-scheme: light dark;
+        --color-error: light-dark(oklch(45% 0.2 25), oklch(75% 0.15 25));
+
+        --space: 1rem;
+
+        --color-bg: light-dark(
+            oklch(97% 0.01 250),
+            oklch(18% 0.03 250)
+        );
+
+        --color-text: light-dark(
+            oklch(25% 0.02 250),
+            oklch(94% 0.02 250)
+        );
+
+        --color-accent: light-dark(
+            oklch(45% 0.15 250),
+            oklch(75% 0.12 250)
+        );
+
+        --color-surface: light-dark(
+            oklch(100% 0 0),
+            oklch(25% 0.03 250)
+        );
+
+        --color-border: color-mix(
+            in oklch,
+            var(--color-text) 25%,
+            transparent
+        );
+
+        --color-muted: color-mix(
+            in oklch,
+            var(--color-text) 60%,
+            var(--color-bg)
+        );
+    }
+
+
+    body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        color: var(--color-text);
+        background-color: var(--color-bg);
+        padding: var(--space);
+    }
+
+    input,
+    textarea,
+    button {
+        font: inherit;
+    }
+}
+
+
+@layer components {
+    /* Task 01*/
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space);
+        padding-block-end: var(--space);
+        border-block-end: 1px solid var(--color-border);
+    }
+
+    
+    .error {
+    display: block;
+    color: var(--color-error);
+    }
+
+    input[aria-invalid="true"] {
+    border-color: var(--color-error);
+    }
+
+
+    h1 {
+        margin: 0 0 15px;
+        font-size: 32px;
+    }
+
+
+    /* Navigation */
+    
+    /* Task 2: Navigation layout */
+    nav ul {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        color: var(--color-accent);
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+
+    :where(nav ul li) a {
+        color: var(--color-accent);
+    }
+
+    .nav-link {
+        color: var(--color-accent);
+    }
+
+    a[aria-current="location"] {
+        color: var(--color-accent);
+    }
+
+    main {
+        max-inline-size: 60rem;
+        margin-inline: auto;
+        padding-block: 1rem;
+    }
+
+
+    section {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px var(--color-border);
+    }
+
+    
+    /* Task 4: Office Hours grid */
+    #schedule {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: var(--space);
+        align-items: start;
+    }
+
+    /* Highlight booked rows */
+    tr.selected th,
+    tr.selected td {
+        background: color-mix(
+            in oklch,
+            var(--color-accent) 20%,
+            var(--color-bg)
+        );
+    }
+
+
+    h2 {
+        color: var(--color-accent);
+        margin-top: 0;
+    }
+
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    caption {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    th,
+    td {
+        border: 1px solid var(--color-border);
+        padding: 12px;
+        text-align: left;
+    }
+
+
+    th {
+        background-color: color-mix(
+            in oklch,
+            var(--color-accent) 18%,
+            var(--color-surface)
+        );
+    }
+
+
+    /* Task 3: Location icon and caption */
+    figure {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    figure svg {
+        width: 40px;
+        height: 40px;
+        fill: currentColor;
+    }
+
+    figcaption {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+
+    /* Decorative SVG */
+
+    main > svg {
+        display: block;
+        margin: 20px auto;
+    }
+
+
+    form p {
+        margin-block: 0.5rem 1rem;
+    }
+
+    label {
+        margin-top: 12px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    
+    /* Task 5: Feedback form grid */
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 var(--space);
+    }
+
+    form button {
+        justify-self: start;
+    }
+
+    input:not([type="radio"]),
+    textarea {
+        inline-size: 100%;
+    }
+
+
+    #email-hint {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+
+    /* Radio Button Group */
+
+    fieldset {
+        margin-top: 15px;
+        padding: 15px;
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+    }
+
+    fieldset label {
+        display: inline;
+        margin-right: 15px;
+        font-weight: normal;
+    }
+
+
+
+    button {
+        margin-top: 20px;
+        padding: 12px;
+        background-color: var(--color-accent);
+        color: var(--color-bg);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+
+    button:hover {
+        background-color: color-mix(
+            in oklch,
+            var(--color-accent) 70%,
+            var(--color-text)
+        );
+    }
+
+
+    /* Footer */
+
+    footer {
+        background-color: var(--color-text);
+        color: var(--color-bg);
+        text-align: center;
+        padding: 20px;
+    }
+
+    address {
+        font-style: normal;
+    }
+
+
+    /* Skip Link */
+
+    .skip-link {
+        position: absolute;
+        top: -50px;
+        left: 10px;
+        padding: 10px;
+        background-color: var(--color-surface);
+        color: var(--color-accent);
+        border: 2px solid var(--color-accent);
+        text-decoration: none;
+    }
+
+    .skip-link:focus-visible {
+        top: 10px;
+    }
+
+
+    /* Keyboard Focus */
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+        outline: 3px solid #ff9800;
+        outline-offset: 3px;
+    }
+}
+
+
+@layer utilities {
+
+    .text-muted {
+        color: var(--color-muted);
+    }
+
+    
+    /* Task 04 */
+    .span-all {
+        grid-column: 1 / -1;
+    }
+
+}
+
+/* Task 09: Highlight booked rows */
+tr.selected th,
+tr.selected td {
+  background: color-mix(
+    in oklch,
+    var(--color-accent) 20%,
+    var(--color-bg)
+  );
+}
